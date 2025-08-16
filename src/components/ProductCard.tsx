@@ -57,12 +57,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-all duration-500 group hover:scale-105 animate-fade-in">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-all duration-500 group hover:scale-105 animate-fade-in mx-auto max-w-sm">
       <div className="relative">
         <img
           src={product.image_url}
           alt={product.name}
-          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <span className={`absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(product.category)}`}>
           {getCategoryLabel(product.category)}
@@ -79,9 +79,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => 
         )}
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 truncate pr-2">
             {product.name}
           </h3>
           <div className="flex items-center space-x-1">
@@ -117,13 +117,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => 
         )}
 
         <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
             {product.show_fake_discount && product.original_price && product.original_price > product.price ? (
               <div className="flex flex-col">
-                <span className="text-lg text-gray-500 dark:text-gray-400 line-through">
+                <span className="text-sm sm:text-lg text-gray-500 dark:text-gray-400 line-through">
                   {product.original_price.toFixed(0)} RSD
                 </span>
-                <span className="text-2xl font-bold text-red-600 dark:text-red-400">
+                <span className="text-xl sm:text-2xl font-bold text-red-600 dark:text-red-400">
                   {product.price.toFixed(0)} RSD
                 </span>
               </div>
@@ -131,11 +131,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => 
               <span>{product.price.toFixed(0)} RSD</span>
             )}
           </div>
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
             {onViewDetails && (
               <button
                 onClick={() => onViewDetails(product)}
-                className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                className="flex items-center justify-center space-x-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
                 title="Pogledaj detalje"
               >
                 <Info className="w-4 h-4" />
@@ -144,14 +144,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => 
             <button
               onClick={handleAddToCart}
               disabled={isOutOfStock}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium hover:scale-105 ${
+              className={`flex items-center justify-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 rounded-lg transition-all duration-300 font-medium hover:scale-105 text-xs sm:text-sm ${
                 isOutOfStock 
                   ? 'bg-gray-400 dark:bg-gray-600 text-gray-600 dark:text-gray-400 cursor-not-allowed' 
                   : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white hover:shadow-lg'
               }`}
             >
               <ShoppingCart className="w-4 h-4" />
-              <span>{isOutOfStock ? 'Nema na stanju' : 'Dodaj u Korpu'}</span>
+              <span className="hidden sm:inline">{isOutOfStock ? 'Nema na stanju' : 'Dodaj u Korpu'}</span>
+              <span className="sm:hidden">{isOutOfStock ? 'Nema' : 'Dodaj'}</span>
             </button>
           </div>
         </div>

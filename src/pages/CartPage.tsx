@@ -253,32 +253,32 @@ const CartPage: React.FC = () => {
   const total = subtotal - discountAmount;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Korpa za Kupovinu</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Korpa za Kupovinu</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Stavke u Korpi</h2>
+              <div className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Stavke u Korpi</h2>
                 <div className="space-y-4">
                   {items.map(item => (
-                    <div key={item.product.id} className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div key={item.product.id} className="flex items-center space-x-2 sm:space-x-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                       <img
                         src={item.product.image_url}
                         alt={item.product.name}
-                        className="w-16 h-16 object-cover rounded-lg"
+                        className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-lg flex-shrink-0"
                       />
                       <div className="flex-1">
-                        <h3 className="font-medium text-gray-900 dark:text-white">{item.product.name}</h3>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">
+                        <h3 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base truncate">{item.product.name}</h3>
+                        <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                           {item.product.show_fake_discount && item.product.original_price && item.product.original_price > item.product.price ? (
-                            <div className="flex items-center space-x-2">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
                               <span className="line-through text-gray-500 dark:text-gray-400">{item.product.original_price.toFixed(0)} RSD</span>
                               <span className="text-red-600 dark:text-red-400 font-medium">{item.product.price.toFixed(0)} RSD</span>
-                              <span className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-1 py-0.5 rounded text-xs font-medium">
+                              <span className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-1 py-0.5 rounded text-xs font-medium w-fit">
                                 -{Math.round(((item.product.original_price - item.product.price) / item.product.original_price) * 100)}%
                               </span>
                             </div>
@@ -287,27 +287,27 @@ const CartPage: React.FC = () => {
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                          className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 touch-manipulation"
                         >
                           <Minus className="w-4 h-4" />
                         </button>
-                        <span className="w-8 text-center font-medium text-gray-900 dark:text-white">{item.quantity}</span>
+                        <span className="w-6 sm:w-8 text-center font-medium text-gray-900 dark:text-white text-sm sm:text-base">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                           disabled={item.product.track_stock && item.quantity >= item.product.stock_quantity}
-                          className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                         >
                           <Plus className="w-4 h-4" />
                         </button>
                       </div>
-                      <div className="text-right">
-                        <p className="font-medium text-gray-900 dark:text-white">{(item.product.price * item.quantity).toFixed(0)} RSD</p>
+                      <div className="text-right flex-shrink-0">
+                        <p className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">{(item.product.price * item.quantity).toFixed(0)} RSD</p>
                         <button
                           onClick={() => removeFromCart(item.product.id)}
-                          className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 mt-1"
+                          className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 mt-1 touch-manipulation"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -320,21 +320,21 @@ const CartPage: React.FC = () => {
           </div>
 
           {/* Checkout */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Discount Code */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Kod za Popust</h3>
-              <div className="flex space-x-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Kod za Popust</h3>
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                 <input
                   type="text"
                   placeholder="Unesite kod"
                   value={discountCode}
                   onChange={(e) => setDiscountCode(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                 />
                 <button
                   onClick={applyDiscountCode}
-                  className="px-4 py-2 bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 rounded-lg font-medium transition-colors"
+                  className="px-4 py-2 bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 rounded-lg font-medium transition-colors text-sm sm:text-base touch-manipulation"
                 >
                   Primeni
                 </button>
@@ -345,36 +345,36 @@ const CartPage: React.FC = () => {
             </div>
 
             {/* Referral Code */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Referral Kod</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Referral Kod</h3>
               <input
                 type="text"
                 placeholder="Unesite referral kod (opciono)"
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
               />
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2">
                 Ako imate referral kod, unesite ga ovde
               </p>
             </div>
 
             {/* Order Summary */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Pregled Porudžbine</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Pregled Porudžbine</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">Međuzbir</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{subtotal.toFixed(0)} RSD</span>
+                  <span className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Međuzbir</span>
+                  <span className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">{subtotal.toFixed(0)} RSD</span>
                 </div>
                 {appliedDiscountInfo && (
                   <div className="flex justify-between text-green-600 dark:text-green-400">
-                    <span>Popust ({appliedDiscountInfo.code})</span>
-                    <span>-{discountAmount.toFixed(0)} RSD</span>
+                    <span className="text-sm sm:text-base">Popust ({appliedDiscountInfo.code})</span>
+                    <span className="text-sm sm:text-base">-{discountAmount.toFixed(0)} RSD</span>
                   </div>
                 )}
-                <hr />
-                <div className="flex justify-between text-lg font-bold text-gray-900 dark:text-white">
+                <hr className="border-gray-200 dark:border-gray-600" />
+                <div className="flex justify-between text-base sm:text-lg font-bold text-gray-900 dark:text-white">
                   <span>Ukupno</span>
                   <span>{total.toFixed(0)} RSD</span>
                 </div>
@@ -388,7 +388,7 @@ const CartPage: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                   placeholder="vas@email.com"
                   required
                 />
@@ -397,10 +397,10 @@ const CartPage: React.FC = () => {
               <button
                 onClick={handleCheckout}
                 disabled={!email || loading}
-                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                className="w-full mt-4 sm:mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-6 py-3 sm:py-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 text-sm sm:text-base touch-manipulation"
               >
                 {loading ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-2 border-white border-t-transparent"></div>
                 ) : (
                   <>
                     <span>Završi Porudžbinu</span>

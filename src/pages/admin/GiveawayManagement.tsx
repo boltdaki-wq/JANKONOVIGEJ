@@ -91,12 +91,27 @@ const GiveawayManagement: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate required fields
+    if (!formData.title.trim() || !formData.description.trim() || !formData.prize.trim() || !formData.end_date) {
+      alert('Molimo popunite sva obavezna polja');
+      return;
+    }
+
+    // Validate dates
+    const startDate = formData.start_date ? new Date(formData.start_date) : new Date();
+    const endDate = new Date(formData.end_date);
+    
+    if (endDate <= startDate) {
+      alert('Datum završetka mora biti nakon datuma početka');
+      return;
+    }
+
     const giveawayData = {
       title: formData.title,
       description: formData.description,
       prize: formData.prize,
       max_participants: parseInt(formData.max_participants),
-      start_date: formData.start_date || new Date().toISOString(),
+      start_date: formData.start_date ? new Date(formData.start_date).toISOString() : new Date().toISOString(),
       end_date: formData.end_date,
       winner_count: parseInt(formData.winner_count),
       is_active: formData.is_active
@@ -124,7 +139,7 @@ const GiveawayManagement: React.FC = () => {
       resetForm();
     } catch (error) {
       console.error('Error saving giveaway:', error);
-      alert('Greška pri čuvanju giveaway-a');
+      alert(`Greška pri čuvanju giveaway-a: ${error.message || 'Nepoznata greška'}`);
     }
   };
 
@@ -135,8 +150,8 @@ const GiveawayManagement: React.FC = () => {
       description: giveaway.description,
       prize: giveaway.prize,
       max_participants: giveaway.max_participants.toString(),
-      start_date: new Date(giveaway.start_date).toISOString().slice(0, 16),
-      end_date: new Date(giveaway.end_date).toISOString().slice(0, 16),
+      start_date: giveaway.start_date ? new Date(giveaway.start_date).toISOString().slice(0, 16) : '',
+      end_date: giveaway.end_date ? new Date(giveaway.end_date).toISOString().slice(0, 16) : '',
       winner_count: giveaway.winner_count.toString(),
       is_active: giveaway.is_active
     });
@@ -372,7 +387,11 @@ const GiveawayManagement: React.FC = () => {
                 value={formData.start_date}
                 onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                min={new Date().toISOString().slice(0, 16)}
               />
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Ostavite prazno za trenutni datum i vreme
+              </p>
             </div>
 
             <div>
@@ -384,6 +403,7 @@ const GiveawayManagement: React.FC = () => {
                 value={formData.end_date}
                 onChange={(e) => setFormData({ ...formData, end_date: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                min={new Date().toISOString().slice(0, 16)}
                 required
               />
             </div>

@@ -120,9 +120,10 @@ const GiveawayParticipate: React.FC = () => {
         });
 
       if (error) {
-        if (error.code === '23505') { // Unique constraint violation
+        if (error.code === '23505' || error.message?.includes('duplicate') || error.message?.includes('unique')) {
           setError('Već ste učestvovali u ovom giveaway-u sa ovim Telegram username-om');
         } else {
+          console.error('Supabase error:', error);
           throw error;
         }
       } else {
@@ -131,7 +132,7 @@ const GiveawayParticipate: React.FC = () => {
       }
     } catch (error) {
       console.error('Error joining giveaway:', error);
-      setError('Greška pri učestvovanju u giveaway-u. Molimo pokušajte ponovo.');
+      setError(`Greška pri učestvovanju u giveaway-u: ${error.message || 'Molimo pokušajte ponovo.'}`);
     } finally {
       setSubmitting(false);
     }

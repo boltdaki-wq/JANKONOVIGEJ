@@ -24,22 +24,34 @@ const HomePage: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .order('created_at', { ascending: false });
+      // Check if Supabase is configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        console.warn('Supabase nije konfigurisan, koristim fallback proizvode');
+        setProducts(getFallbackProducts());
+        return;
+      }
 
-      if (error) throw error;
-      
-      if (data && data.length > 0) {
-        setProducts(data);
-      } else {
-        console.warn('Nema proizvoda u bazi, koristim fallback proizvode');
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        
+        if (data && data.length > 0) {
+          setProducts(data);
+        } else {
+          console.warn('Nema proizvoda u bazi, koristim fallback proizvode');
+          setProducts(getFallbackProducts());
+        }
+      } catch (supabaseError) {
+        console.error('Supabase greška:', supabaseError);
+        console.warn('Koristim fallback proizvode zbog greške');
         setProducts(getFallbackProducts());
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
-      console.warn('Greška sa bazom, koristim fallback proizvode');
+      console.error('Opšta greška:', error);
       setProducts(getFallbackProducts());
     } finally {
       setLoading(false);
@@ -47,7 +59,42 @@ const HomePage: React.FC = () => {
   };
 
   const getFallbackProducts = (): Product[] => [
-    // Nema fallback proizvoda - koristićemo samo bazu podataka
+    {
+      id: 'fallback-1',
+      name: 'Steam Account - Premium',
+      description: 'Premium Steam account sa velikim brojem igara i high level-om.',
+      price: 2500,
+      category: 'accounts',
+      image_url: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg',
+      created_at: new Date().toISOString(),
+      stock_quantity: 10,
+      track_stock: true,
+      low_stock_threshold: 2
+    },
+    {
+      id: 'fallback-2',
+      name: 'Netflix Premium - 1 Mesec',
+      description: 'Netflix Premium pretplata na 1 mesec sa 4K kvalitetom.',
+      price: 800,
+      category: 'subscriptions',
+      image_url: 'https://images.pexels.com/photos/1040160/pexels-photo-1040160.jpeg',
+      created_at: new Date().toISOString(),
+      stock_quantity: 50,
+      track_stock: true,
+      low_stock_threshold: 5
+    },
+    {
+      id: 'fallback-3',
+      name: 'Discord Nitro - 1 Mesec',
+      description: 'Discord Nitro pretplata sa svim premium funkcijama.',
+      price: 600,
+      category: 'addons',
+      image_url: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg',
+      created_at: new Date().toISOString(),
+      stock_quantity: 25,
+      track_stock: true,
+      low_stock_threshold: 3
+    }
   ];
 
   const filterProducts = () => {

@@ -51,24 +51,6 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <a
-              href="https://instagram.com/gmshop.shop"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
-              title="Instagram"
-            >
-              <Instagram className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-            </a>
-            <a
-              href="https://t.me/kohoshop"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
-              title="Telegram"
-            >
-              <MessageCircle className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-            </a>
             <button
               onClick={toggleDarkMode}
               className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md"

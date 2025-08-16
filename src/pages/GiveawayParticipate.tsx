@@ -40,16 +40,28 @@ const GiveawayParticipate: React.FC = () => {
 
   const fetchGiveaway = async () => {
     try {
-      const { data, error } = await supabase
-        .from('giveaways')
-        .select('*')
-        .eq('id', id)
-        .single();
+      // Check if Supabase is configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        console.warn('Supabase nije konfigurisan');
+        setGiveaway(null);
+        return;
+      }
 
-      if (error) throw error;
-      setGiveaway(data);
+      try {
+        const { data, error } = await supabase
+          .from('giveaways')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (error) throw error;
+        setGiveaway(data);
+      } catch (supabaseError) {
+        console.error('Supabase greška:', supabaseError);
+        setGiveaway(null);
+      }
     } catch (error) {
-      console.error('Error fetching giveaway:', error);
+      console.error('Opšta greška:', error);
       setGiveaway(null);
     } finally {
       setLoading(false);
@@ -58,16 +70,29 @@ const GiveawayParticipate: React.FC = () => {
 
   const fetchParticipants = async () => {
     try {
-      const { data, error } = await supabase
-        .from('giveaway_participants')
-        .select('*')
-        .eq('giveaway_id', id)
-        .order('created_at', { ascending: false });
+      // Check if Supabase is configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        console.warn('Supabase nije konfigurisan');
+        setParticipants([]);
+        return;
+      }
 
-      if (error) throw error;
-      setParticipants(data || []);
+      try {
+        const { data, error } = await supabase
+          .from('giveaway_participants')
+          .select('*')
+          .eq('giveaway_id', id)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        setParticipants(data || []);
+      } catch (supabaseError) {
+        console.error('Supabase greška:', supabaseError);
+        setParticipants([]);
+      }
     } catch (error) {
-      console.error('Error fetching participants:', error);
+      console.error('Opšta greška:', error);
+      setParticipants([]);
     }
   };
 

@@ -14,30 +14,43 @@ const GiveawayPage: React.FC = () => {
 
   const fetchGiveaways = async () => {
     try {
-      const { data, error } = await supabase
-        .from('giveaways')
-        .select('*')
-        .eq('is_active', true)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      
-      const giveawayData = data || [];
-      setGiveaways(giveawayData);
-
-      // Fetch participant counts for each giveaway
-      const counts: Record<string, number> = {};
-      for (const giveaway of giveawayData) {
-        const { count } = await supabase
-          .from('giveaway_participants')
-          .select('*', { count: 'exact', head: true })
-          .eq('giveaway_id', giveaway.id);
-        
-        counts[giveaway.id] = count || 0;
+      // Check if Supabase is configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        console.warn('Supabase nije konfigurisan');
+        setGiveaways([]);
+        return;
       }
-      setParticipantCounts(counts);
+
+      try {
+        const { data, error } = await supabase
+          .from('giveaways')
+          .select('*')
+          .eq('is_active', true)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        
+        const giveawayData = data || [];
+        setGiveaways(giveawayData);
+
+        // Fetch participant counts for each giveaway
+        const counts: Record<string, number> = {};
+        for (const giveaway of giveawayData) {
+          const { count } = await supabase
+            .from('giveaway_participants')
+            .select('*', { count: 'exact', head: true })
+            .eq('giveaway_id', giveaway.id);
+          
+          counts[giveaway.id] = count || 0;
+        }
+        setParticipantCounts(counts);
+      } catch (supabaseError) {
+        console.error('Supabase greška:', supabaseError);
+        setGiveaways([]);
+      }
     } catch (error) {
-      console.error('Error fetching giveaways:', error);
+      console.error('Opšta greška:', error);
+      setGiveaways([]);
     } finally {
       setLoading(false);
     }

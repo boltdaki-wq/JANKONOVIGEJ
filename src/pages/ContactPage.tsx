@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MessageCircle } from 'lucide-react';
+import { Mail, MessageCircle, Instagram } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const ContactPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {/* Email Contact */}
           <div className="bg-white rounded-xl shadow-lg p-8 text-center">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -25,15 +25,35 @@ const ContactPage: React.FC = () => {
             <div className="bg-gray-100 rounded-lg p-4 mb-6">
               <p className="text-lg font-medium text-gray-900">damjan@detemarketinga.site</p>
             </div>
-            <div className="bg-gray-100 rounded-lg p-4 mb-6">
-              <p className="text-lg font-medium text-gray-900">Instagram: @gmshop.shop</p>
-            </div>
             <a
               href="mailto:damjan@detemarketinga.site"
               className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
               <Mail className="w-4 h-4" />
               <span>Pošalji Email</span>
+            </a>
+          </div>
+
+          {/* Instagram Contact */}
+          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Instagram className="w-8 h-8 text-pink-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Instagram</h3>
+            <p className="text-gray-600 mb-6">
+              Pratite nas na Instagram-u za najnovije proizvode i promocije
+            </p>
+            <div className="bg-gray-100 rounded-lg p-4 mb-6">
+              <p className="text-lg font-medium text-gray-900">@gmshop.shop</p>
+            </div>
+            <a
+              href="https://instagram.com/gmshop.shop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <Instagram className="w-4 h-4" />
+              <span>Otvori Instagram</span>
             </a>
           </div>
 

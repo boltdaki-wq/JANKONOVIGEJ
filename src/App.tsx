@@ -8,6 +8,8 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import CartPage from './pages/CartPage';
 import ContactPage from './pages/ContactPage';
+import GiveawayPage from './pages/GiveawayPage';
+import GiveawayParticipate from './pages/GiveawayParticipate';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ReferralLogin from './pages/referral/ReferralLogin';
@@ -34,6 +36,8 @@ function App() {
                         <Routes>
                           <Route path="/" element={<HomePage />} />
                           <Route path="/cart" element={<CartPage />} />
+                          <Route path="/giveaways" element={<GiveawayPage />} />
+                          <Route path="/giveaway/:id" element={<GiveawayParticipate />} />
                           <Route path="/contact" element={<ContactPage />} />
                         </Routes>
                       </>

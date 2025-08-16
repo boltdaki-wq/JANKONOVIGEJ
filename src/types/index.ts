@@ -41,3 +41,32 @@ export interface DiscountCode {
   is_active: boolean;
   created_at: string;
 }
+
+export interface Giveaway {
+  id: string;
+  title: string;
+  description: string;
+  prize: string;
+  max_participants: number;
+  start_date: string;
+  end_date: string;
+  is_active: boolean;
+  winner_count: number;
+  created_at: string;
+}
+
+export interface GiveawayParticipant {
+  id: string;
+  giveaway_id: string;
+  telegram_username: string;
+  email?: string;
+  created_at: string;
+}
+
+export interface GiveawayWinner {
+  id: string;
+  giveaway_id: string;
+  participant_id: string;
+  selected_at: string;
+  participant?: GiveawayParticipant;
+}

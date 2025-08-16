@@ -8,7 +8,8 @@ import {
   Plus,
   BarChart3,
   Settings,
-  LogOut
+  LogOut,
+  Gift
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import ProductManagement from './ProductManagement';
@@ -17,6 +18,7 @@ import DiscountManagement from './DiscountManagement';
 import FakeDiscountManagement from './FakeDiscountManagement';
 import StockManagement from './StockManagement';
 import ReferralManagement from './ReferralManagement';
+import GiveawayManagement from './GiveawayManagement';
 import { supabase } from '../../lib/supabase';
 
 const AdminDashboard: React.FC = () => {
@@ -26,7 +28,8 @@ const AdminDashboard: React.FC = () => {
     totalProducts: 0,
     totalOrders: 0,
     totalRevenue: 0,
-    pendingOrders: 0
+    pendingOrders: 0,
+    activeGiveaways: 0
   });
 
   useEffect(() => {
@@ -51,6 +54,12 @@ const AdminDashboard: React.FC = () => {
         .from('orders')
         .select('total_amount, status');
 
+      // Fetch giveaways count
+      const { count: giveawaysCount } = await supabase
+        .from('giveaways')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_active', true);
+
       const totalOrders = orders?.length || 0;
       const totalRevenue = orders?.reduce((sum, order) => sum + order.total_amount, 0) || 0;
       const pendingOrders = orders?.filter(order => order.status === 'pending').length || 0;
@@ -59,7 +68,8 @@ const AdminDashboard: React.FC = () => {
         totalProducts: productsCount || 0,
         totalOrders,
         totalRevenue,
-        pendingOrders
+        pendingOrders,
+        activeGiveaways: giveawaysCount || 0
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -91,6 +101,12 @@ const AdminDashboard: React.FC = () => {
       icon: Users,
       color: 'bg-purple-500',
     },
+    {
+      title: 'Aktivni Giveaway-i',
+      value: stats.activeGiveaways,
+      icon: Gift,
+      color: 'bg-pink-500',
+    },
   ];
 
   const tabs = [
@@ -101,6 +117,7 @@ const AdminDashboard: React.FC = () => {
     { id: 'discounts', name: 'Kodovi za Popust', icon: Settings },
     { id: 'fake-discounts', name: 'Lažni Popust', icon: Package },
     { id: 'referrals', name: 'Referral Sistem', icon: Users },
+    { id: 'giveaways', name: 'Giveaway Sistem', icon: Gift },
   ];
 
   const renderContent = () => {
@@ -117,6 +134,8 @@ const AdminDashboard: React.FC = () => {
         return <FakeDiscountManagement />;
       case 'referrals':
         return <ReferralManagement />;
+      case 'giveaways':
+        return <GiveawayManagement />;
       default:
         return (
           <div className="space-y-6">

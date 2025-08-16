@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Store, Shield, Moon, Sun, Users } from 'lucide-react';
+import { ShoppingCart, Store, Shield, Moon, Sun, Users, Gift } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -25,6 +25,9 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105">
               Proizvodi
+            </Link>
+            <Link to="/giveaways" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105">
+              Giveaway
             </Link>
             <Link to="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105">
               Kontakt
@@ -53,6 +56,13 @@ const Header: React.FC = () => {
                   {getTotalItems()}
                 </span>
               )}
+            </Link>
+            <Link
+              to="/giveaways"
+              className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
+              title="Giveaway"
+            >
+              <Gift className="w-5 h-5 text-gray-700 dark:text-gray-300" />
             </Link>
             <Link
               to="/referral"

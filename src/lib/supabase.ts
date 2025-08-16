@@ -190,6 +190,87 @@ export type Database = {
           created_at?: string;
         };
       };
+      giveaways: {
+        Row: {
+          id: string;
+          title: string;
+          description: string;
+          prize: string;
+          max_participants: number;
+          start_date: string;
+          end_date: string;
+          is_active: boolean;
+          winner_count: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          description: string;
+          prize: string;
+          max_participants?: number;
+          start_date?: string;
+          end_date: string;
+          is_active?: boolean;
+          winner_count?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          description?: string;
+          prize?: string;
+          max_participants?: number;
+          start_date?: string;
+          end_date?: string;
+          is_active?: boolean;
+          winner_count?: number;
+          created_at?: string;
+        };
+      };
+      giveaway_participants: {
+        Row: {
+          id: string;
+          giveaway_id: string;
+          telegram_username: string;
+          email: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          giveaway_id: string;
+          telegram_username: string;
+          email?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          giveaway_id?: string;
+          telegram_username?: string;
+          email?: string | null;
+          created_at?: string;
+        };
+      };
+      giveaway_winners: {
+        Row: {
+          id: string;
+          giveaway_id: string;
+          participant_id: string;
+          selected_at: string;
+        };
+        Insert: {
+          id?: string;
+          giveaway_id: string;
+          participant_id: string;
+          selected_at?: string;
+        };
+        Update: {
+          id?: string;
+          giveaway_id?: string;
+          participant_id?: string;
+          selected_at?: string;
+        };
+      };
     };
   };
 };

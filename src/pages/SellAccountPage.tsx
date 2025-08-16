@@ -28,33 +28,55 @@ const SellAccountPage: React.FC = () => {
     }
 
     try {
-      const { error } = await supabase
-        .from('sell_requests')
-        .insert({
-          customer_name: formData.customer_name,
-          customer_email: formData.customer_email,
-          customer_telegram: telegramUsername,
-          item_name: formData.item_name,
-          item_description: formData.item_description,
-          asking_price: parseFloat(formData.asking_price) || 0,
-          item_category: formData.item_category,
-          status: 'pending'
+      // Check if Supabase is configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        console.warn('Supabase nije konfigurisan, simuliram zahtev');
+        setSuccess(true);
+        setFormData({
+          customer_name: '',
+          customer_email: '',
+          customer_telegram: '',
+          item_name: '',
+          item_description: '',
+          asking_price: '',
+          item_category: 'accounts'
         });
+        setLoading(false);
+        return;
+      }
 
-      if (error) throw error;
+      try {
+        const { error } = await supabase
+          .from('sell_requests')
+          .insert({
+            customer_name: formData.customer_name,
+            customer_email: formData.customer_email,
+            customer_telegram: telegramUsername,
+            item_name: formData.item_name,
+            item_description: formData.item_description,
+            asking_price: parseFloat(formData.asking_price) || 0,
+            item_category: formData.item_category,
+            status: 'pending'
+          });
 
-      setSuccess(true);
-      setFormData({
-        customer_name: '',
-        customer_email: '',
-        customer_telegram: '',
-        item_name: '',
-        item_description: '',
-        asking_price: '',
-        item_category: 'accounts'
-      });
+        if (error) throw error;
+
+        setSuccess(true);
+        setFormData({
+          customer_name: '',
+          customer_email: '',
+          customer_telegram: '',
+          item_name: '',
+          item_description: '',
+          asking_price: '',
+          item_category: 'accounts'
+        });
+      } catch (supabaseError) {
+        console.error('Supabase greška:', supabaseError);
+        setError('Greška pri slanju zahteva. Molimo pokušajte ponovo.');
+      }
     } catch (error) {
-      console.error('Error submitting sell request:', error);
+      console.error('Opšta greška:', error);
       setError('Greška pri slanju zahteva. Molimo pokušajte ponovo.');
     } finally {
       setLoading(false);

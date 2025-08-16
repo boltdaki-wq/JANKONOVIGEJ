@@ -83,6 +83,36 @@ html {
   }
 }
 
+/* Desktop improvements */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  /* Better spacing for desktop */
+  .desktop-spacing {
+    padding: 2rem;
+  }
+  
+  /* Improved grid layouts */
+  .desktop-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Improved hover effects for desktop */
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+}
+
 /* Text truncation utility */
 .line-clamp-2 {
   display: -webkit-box;

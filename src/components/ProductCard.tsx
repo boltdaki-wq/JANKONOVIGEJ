@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-all duration-500 group hover:scale-105 animate-fade-in mx-auto max-w-sm">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-all duration-500 group hover:scale-105 animate-fade-in mx-auto max-w-sm hover-lift">
       <div className="relative">
         <img
           src={product.image_url}

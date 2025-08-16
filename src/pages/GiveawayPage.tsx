@@ -161,13 +161,13 @@ const GiveawayPage: React.FC = () => {
 
                     <div className="space-y-3">
                       {isActive && participantCount < giveaway.max_participants && (
-                        <a
-                          href={`/giveaway/${giveaway.id}`}
+                        <button
+                          onClick={() => window.location.href = `/giveaway/${giveaway.id}`}
                           className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
                         >
                           <Gift className="w-4 h-4" />
                           <span>Učestvuj u Giveaway-u</span>
-                        </a>
+                        </button>
                       )}
 
                       {isActive && participantCount >= giveaway.max_participants && (

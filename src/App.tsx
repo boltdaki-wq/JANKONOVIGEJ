@@ -54,10 +54,10 @@ function App() {
                     </>
                   } />
                   <Route path="/giveaway/:id" element={
-                    <>
+                    <div>
                       <Header />
                       <GiveawayParticipate />
-                    </>
+                    </div>
                   } />
                   <Route path="/contact" element={
                     <>

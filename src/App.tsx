@@ -29,22 +29,42 @@ function App() {
                   <Route path="/admin/dashboard" element={<AdminDashboard />} />
                   <Route path="/referral" element={<ReferralLogin />} />
                   <Route path="/referral/dashboard" element={<ReferralDashboard />} />
-                  <Route
-                    path="/*"
-                    element={
-                      <>
-                        <Header />
-                        <Routes>
-                          <Route path="/" element={<HomePage />} />
-                          <Route path="/cart" element={<CartPage />} />
-                          <Route path="/sell" element={<SellAccountPage />} />
-                          <Route path="/giveaways" element={<GiveawayPage />} />
-                          <Route path="/giveaway/:id" element={<GiveawayParticipate />} />
-                          <Route path="/contact" element={<ContactPage />} />
-                        </Routes>
-                      </>
-                    }
-                  />
+                  <Route path="/" element={
+                    <>
+                      <Header />
+                      <HomePage />
+                    </>
+                  } />
+                  <Route path="/cart" element={
+                    <>
+                      <Header />
+                      <CartPage />
+                    </>
+                  } />
+                  <Route path="/sell" element={
+                    <>
+                      <Header />
+                      <SellAccountPage />
+                    </>
+                  } />
+                  <Route path="/giveaways" element={
+                    <>
+                      <Header />
+                      <GiveawayPage />
+                    </>
+                  } />
+                  <Route path="/giveaway/:id" element={
+                    <>
+                      <Header />
+                      <GiveawayParticipate />
+                    </>
+                  } />
+                  <Route path="/contact" element={
+                    <>
+                      <Header />
+                      <ContactPage />
+                    </>
+                  } />
                 </Routes>
               </div>
             </Router>

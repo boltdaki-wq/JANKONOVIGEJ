@@ -19,6 +19,7 @@ import FakeDiscountManagement from './FakeDiscountManagement';
 import StockManagement from './StockManagement';
 import ReferralManagement from './ReferralManagement';
 import GiveawayManagement from './GiveawayManagement';
+import SellRequestManagement from './SellRequestManagement';
 import { supabase } from '../../lib/supabase';
 
 const AdminDashboard: React.FC = () => {
@@ -29,7 +30,8 @@ const AdminDashboard: React.FC = () => {
     totalOrders: 0,
     totalRevenue: 0,
     pendingOrders: 0,
-    activeGiveaways: 0
+    activeGiveaways: 0,
+    pendingSellRequests: 0
   });
 
   useEffect(() => {
@@ -60,6 +62,12 @@ const AdminDashboard: React.FC = () => {
         .select('*', { count: 'exact', head: true })
         .eq('is_active', true);
 
+      // Fetch sell requests count
+      const { count: sellRequestsCount } = await supabase
+        .from('sell_requests')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'pending');
+
       const totalOrders = orders?.length || 0;
       const totalRevenue = orders?.reduce((sum, order) => sum + order.total_amount, 0) || 0;
       const pendingOrders = orders?.filter(order => order.status === 'pending').length || 0;
@@ -69,7 +77,8 @@ const AdminDashboard: React.FC = () => {
         totalOrders,
         totalRevenue,
         pendingOrders,
-        activeGiveaways: giveawaysCount || 0
+        activeGiveaways: giveawaysCount || 0,
+        pendingSellRequests: sellRequestsCount || 0
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -107,6 +116,12 @@ const AdminDashboard: React.FC = () => {
       icon: Gift,
       color: 'bg-pink-500',
     },
+    {
+      title: 'Zahtevi za Prodaju',
+      value: stats.pendingSellRequests,
+      icon: DollarSign,
+      color: 'bg-orange-500',
+    },
   ];
 
   const tabs = [
@@ -118,6 +133,7 @@ const AdminDashboard: React.FC = () => {
     { id: 'fake-discounts', name: 'Lažni Popust', icon: Package },
     { id: 'referrals', name: 'Referral Sistem', icon: Users },
     { id: 'giveaways', name: 'Giveaway Sistem', icon: Gift },
+    { id: 'sell-requests', name: 'Zahtevi za Prodaju', icon: DollarSign },
   ];
 
   const renderContent = () => {
@@ -136,6 +152,8 @@ const AdminDashboard: React.FC = () => {
         return <ReferralManagement />;
       case 'giveaways':
         return <GiveawayManagement />;
+      case 'sell-requests':
+        return <SellRequestManagement />;
       default:
         return (
           <div className="space-y-6">

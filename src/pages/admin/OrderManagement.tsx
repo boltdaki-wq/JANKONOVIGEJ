@@ -269,7 +269,7 @@ const OrderManagement: React.FC = () => {
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <p className="text-blue-800 font-medium">Instrukcije za Kupca:</p>
                   <p className="text-blue-700 mt-1">
-                    Kupac treba da pošalje poruku na <strong>@koh0o</strong> na Telegramu sa kodom porudžbine <strong>{selectedOrder.order_code}</strong>
+                    Kupac treba da pošalje poruku na <strong>@kohoshop</strong> na Telegramu sa kodom porudžbine <strong>{selectedOrder.order_code}</strong>
                   </p>
                 </div>
               </div>

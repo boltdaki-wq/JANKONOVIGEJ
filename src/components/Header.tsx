@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Store, Shield, Moon, Sun, Users, Gift } from 'lucide-react';
+import { ShoppingCart, Store, Shield, Moon, Sun, Users, Gift, DollarSign, Instagram, MessageCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -26,6 +26,9 @@ const Header: React.FC = () => {
             <Link to="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105">
               Proizvodi
             </Link>
+            <Link to="/sell" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105">
+              Prodaj Account
+            </Link>
             <Link to="/giveaways" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105">
               Giveaway
             </Link>
@@ -35,6 +38,24 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
+            <a
+              href="https://instagram.com/gmshop.shop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
+              title="Instagram"
+            >
+              <Instagram className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+            </a>
+            <a
+              href="https://t.me/kohoshop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
+              title="Telegram"
+            >
+              <MessageCircle className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+            </a>
             <button
               onClick={toggleDarkMode}
               className="p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md"

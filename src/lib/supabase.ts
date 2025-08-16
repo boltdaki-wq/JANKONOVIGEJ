@@ -271,6 +271,47 @@ export type Database = {
           selected_at?: string;
         };
       };
+      sell_requests: {
+        Row: {
+          id: string;
+          customer_name: string;
+          customer_email: string;
+          customer_telegram: string;
+          item_name: string;
+          item_description: string;
+          asking_price: number;
+          item_category: string;
+          status: string;
+          admin_notes: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          customer_name: string;
+          customer_email: string;
+          customer_telegram: string;
+          item_name: string;
+          item_description: string;
+          asking_price?: number;
+          item_category?: string;
+          status?: string;
+          admin_notes?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          customer_name?: string;
+          customer_email?: string;
+          customer_telegram?: string;
+          item_name?: string;
+          item_description?: string;
+          asking_price?: number;
+          item_category?: string;
+          status?: string;
+          admin_notes?: string | null;
+          created_at?: string;
+        };
+      };
     };
   };
 };

@@ -70,3 +70,17 @@ export interface GiveawayWinner {
   selected_at: string;
   participant?: GiveawayParticipant;
 }
+
+export interface SellRequest {
+  id: string;
+  customer_name: string;
+  customer_email: string;
+  customer_telegram: string;
+  item_name: string;
+  item_description: string;
+  asking_price: number;
+  item_category: string;
+  status: 'pending' | 'approved' | 'rejected' | 'completed';
+  admin_notes?: string;
+  created_at: string;
+}

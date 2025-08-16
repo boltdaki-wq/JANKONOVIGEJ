@@ -210,7 +210,7 @@ const CartPage: React.FC = () => {
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
               <p className="text-blue-800 font-medium">Sledeći Koraci:</p>
               <p className="text-blue-700 mt-2">
-                Pošaljite vaš kod porudžbine <strong>{orderCode}</strong> na naš Telegram: <strong>@koh0o</strong>
+                Pošaljite vaš kod porudžbine <strong>{orderCode}</strong> na naš Telegram: <strong>@kohoshop</strong>
               </p>
               {referralCode && <p className="text-blue-700 mt-1">Referral kod: <strong>{referralCode}</strong></p>}
             </div>

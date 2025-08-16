@@ -14,6 +14,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ReferralLogin from './pages/referral/ReferralLogin';
 import ReferralDashboard from './pages/referral/ReferralDashboard';
+import SellAccountPage from './pages/SellAccountPage';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                         <Routes>
                           <Route path="/" element={<HomePage />} />
                           <Route path="/cart" element={<CartPage />} />
+                          <Route path="/sell" element={<SellAccountPage />} />
                           <Route path="/giveaways" element={<GiveawayPage />} />
                           <Route path="/giveaway/:id" element={<GiveawayParticipate />} />
                           <Route path="/contact" element={<ContactPage />} />

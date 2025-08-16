@@ -25,6 +25,9 @@ const ContactPage: React.FC = () => {
             <div className="bg-gray-100 rounded-lg p-4 mb-6">
               <p className="text-lg font-medium text-gray-900">damjan@detemarketinga.site</p>
             </div>
+            <div className="bg-gray-100 rounded-lg p-4 mb-6">
+              <p className="text-lg font-medium text-gray-900">Instagram: @gmshop.shop</p>
+            </div>
             <a
               href="mailto:damjan@detemarketinga.site"
               className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
@@ -44,10 +47,10 @@ const ContactPage: React.FC = () => {
               Kontaktirajte nas na Telegramu za trenutnu podršku i pomoć oko porudžbina
             </p>
             <div className="bg-gray-100 rounded-lg p-4 mb-6">
-              <p className="text-lg font-medium text-gray-900">@koh0o</p>
+              <p className="text-lg font-medium text-gray-900">@kohoshop</p>
             </div>
             <a
-              href="https://t.me/koh0o"
+              href="https://t.me/kohoshop"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"

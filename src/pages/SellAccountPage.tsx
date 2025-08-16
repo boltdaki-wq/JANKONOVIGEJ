@@ -100,27 +100,27 @@ const SellAccountPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-6 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <div className="flex justify-center mb-6">
-            <div className="p-4 bg-green-100 dark:bg-green-900 rounded-full">
-              <DollarSign className="w-12 h-12 text-green-600 dark:text-green-400" />
+            <div className="p-3 sm:p-4 bg-green-100 dark:bg-green-900 rounded-full">
+              <DollarSign className="w-8 h-8 sm:w-12 sm:h-12 text-green-600 dark:text-green-400" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Prodaj Svoj Account</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Prodaj Svoj Account</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
             Imate gaming account koji želite da prodate? Pošaljite nam detalje i mi ćemo vam pomoći da ga prodate brzo i sigurno.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Form */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Detalji o Account-u</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Detalji o Account-u</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {error && (
                 <div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 text-red-800 dark:text-red-200 px-4 py-3 rounded-lg">
                   {error}
@@ -136,7 +136,7 @@ const SellAccountPage: React.FC = () => {
                     type="text"
                     value={formData.customer_name}
                     onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                     required
                   />
                 </div>
@@ -149,7 +149,7 @@ const SellAccountPage: React.FC = () => {
                     type="email"
                     value={formData.customer_email}
                     onChange={(e) => setFormData({ ...formData, customer_email: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                     required
                   />
                 </div>
@@ -163,7 +163,7 @@ const SellAccountPage: React.FC = () => {
                   type="text"
                   value={formData.customer_telegram}
                   onChange={(e) => setFormData({ ...formData, customer_telegram: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                   placeholder="@vasusername ili vasusername"
                   required
                 />
@@ -178,7 +178,7 @@ const SellAccountPage: React.FC = () => {
                     type="text"
                     value={formData.item_name}
                     onChange={(e) => setFormData({ ...formData, item_name: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                     placeholder="npr. Steam Account sa CS2"
                     required
                   />
@@ -191,7 +191,7 @@ const SellAccountPage: React.FC = () => {
                   <select
                     value={formData.item_category}
                     onChange={(e) => setFormData({ ...formData, item_category: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                   >
                     <option value="accounts">Gaming Nalozi</option>
                     <option value="subscriptions">Pretplate</option>
@@ -211,7 +211,7 @@ const SellAccountPage: React.FC = () => {
                   step="1"
                   value={formData.asking_price}
                   onChange={(e) => setFormData({ ...formData, asking_price: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base"
                   placeholder="npr. 5000"
                 />
               </div>
@@ -224,7 +224,7 @@ const SellAccountPage: React.FC = () => {
                   value={formData.item_description}
                   onChange={(e) => setFormData({ ...formData, item_description: e.target.value })}
                   rows={6}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base resize-none"
                   placeholder="Opišite detaljno vaš account: koje igre, level, skinovi, vrednost, stanje account-a, itd."
                   required
                 />
@@ -233,10 +233,10 @@ const SellAccountPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 disabled:scale-100 flex items-center justify-center space-x-2"
+                className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-6 py-3 sm:py-4 rounded-lg font-medium transition-all duration-300 hover:scale-105 disabled:scale-100 flex items-center justify-center space-x-2 text-sm sm:text-base touch-manipulation"
               >
                 {loading ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-2 border-white border-t-transparent"></div>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
@@ -248,52 +248,52 @@ const SellAccountPage: React.FC = () => {
           </div>
 
           {/* Info Panel */}
-          <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Kako Funkcioniše?</h3>
+          <div className="space-y-4 sm:space-y-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4">Kako Funkcioniše?</h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-green-600 dark:text-green-400 font-bold text-sm">1</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">Pošaljite Zahtev</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Popunite formu sa detaljima o vašem account-u</p>
+                    <h4 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">Pošaljite Zahtev</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Popunite formu sa detaljima o vašem account-u</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-green-600 dark:text-green-400 font-bold text-sm">2</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">Pregled Tima</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Naš tim će pregledati vaš zahtev i proceniti vrednost</p>
+                    <h4 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">Pregled Tima</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Naš tim će pregledati vaš zahtev i proceniti vrednost</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-green-600 dark:text-green-400 font-bold text-sm">3</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">Kontakt</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Kontaktiraćemo vas na Telegram-u sa ponudom</p>
+                    <h4 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">Kontakt</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Kontaktiraćemo vas na Telegram-u sa ponudom</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-green-600 dark:text-green-400 font-bold text-sm">4</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">Sigurna Transakcija</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Bezbedna razmena account-a za novac</p>
+                    <h4 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">Sigurna Transakcija</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Bezbedna razmena account-a za novac</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-3">💡 Saveti za Bolju Ponudu</h3>
-              <ul className="text-blue-800 dark:text-blue-200 text-sm space-y-2">
+            <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-xl p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-blue-900 dark:text-blue-100 mb-3">💡 Saveti za Bolju Ponudu</h3>
+              <ul className="text-blue-800 dark:text-blue-200 text-xs sm:text-sm space-y-2">
                 <li>• Opišite detaljno sve što account sadrži</li>
                 <li>• Navedite level, rank, skinove, itd.</li>
                 <li>• Dodajte informacije o email pristupu</li>
@@ -302,9 +302,9 @@ const SellAccountPage: React.FC = () => {
               </ul>
             </div>
 
-            <div className="bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-green-900 dark:text-green-100 mb-3">🔒 Sigurnost</h3>
-              <ul className="text-green-800 dark:text-green-200 text-sm space-y-2">
+            <div className="bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-xl p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-green-900 dark:text-green-100 mb-3">🔒 Sigurnost</h3>
+              <ul className="text-green-800 dark:text-green-200 text-xs sm:text-sm space-y-2">
                 <li>• Sve transakcije su sigurne</li>
                 <li>• Plaćanje nakon verifikacije account-a</li>
                 <li>• Zaštićeni ste od prevara</li>

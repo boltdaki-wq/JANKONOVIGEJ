@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { Gift, Users, Calendar, Trophy, CheckCircle, AlertCircle } from 'lucide-react';
+import { Gift, Users, Calendar, Trophy, CheckCircle, AlertCircle, Clock } from 'lucide-react';
 import { Giveaway, GiveawayParticipant } from '../types';
 import { supabase } from '../lib/supabase';
 

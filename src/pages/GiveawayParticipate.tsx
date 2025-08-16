@@ -4,6 +4,19 @@ import { Gift, Users, Calendar, Trophy, CheckCircle, AlertCircle } from 'lucide-
 import { Giveaway, GiveawayParticipant } from '../types';
 import { supabase } from '../lib/supabase';
 
+const isGiveawayActive = (giveaway: Giveaway): boolean => {
+  const now = new Date();
+  const startDate = new Date(giveaway.start_date);
+  const endDate = new Date(giveaway.end_date);
+  return now >= startDate && now <= endDate && giveaway.is_active;
+};
+
+const isGiveawayEnded = (giveaway: Giveaway): boolean => {
+  const now = new Date();
+  const endDate = new Date(giveaway.end_date);
+  return now > endDate;
+};
+
 const GiveawayParticipate: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [giveaway, setGiveaway] = useState<Giveaway | null>(null);
